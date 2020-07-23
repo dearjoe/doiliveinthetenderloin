@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Do I Live in the Tenderloin?</title>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                
+                min-height: 100vh;
+                font-family: 'Mulish', sans-serif;
+            }
+
+            main {
+                padding: 8px;
+                max-width: 640px;
+                margin: 120px auto auto;
+            }
+
+            form {
+                background-color: white;
+                border-radius: 4px;
+                transition: box-shadow .25s;
+                display: flex;
+                flex-direction: row;
+                padding: 12px 16px;
+            }
+
+            form:focus-within {
+                box-shadow: 0 4px 8px rgba(0,0,0,0.48);
+            }
+
+            input {
+                width: 100%;
+                border: none;
+                outline: none;
+                font: inherit;
+                font-size: 16px;
+            }
+
+            button {
+                border: none;
+                background: none;
+                outline: none;
+            }
+
+            button:hover {
+                cursor: pointer;
+            }
+
+            #result {
+                text-align: center;
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Do I Live in the Tenderloin? </h1>
+            <h5>[Mapping is still being updated] </h5>
+            <form id="form">
+                <input id="address" type="text" placeholder="My address..."/>
+                <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/></svg></button>
+            </form>
+            <p id="result"></p>
+        </main>
+        <script>
+            document.getElementById('form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const address = document.getElementById('address').value;
+                fetch('https://k0szmbulx8.execute-api.us-west-1.amazonaws.com/default?address=' + address, {method: 'POST'})
+                .then(response => response.json())
+                .then(result => {
+                    const div = document.getElementById('result');
+                    if (result === null) {
+                        div.innerHTML = "Whoops! Couldn't find that address";
+                    } else if (result === true) {
+                        div.innerHTML = "Yes.";
+                    } else {
+                        div.innerHTML = "No.";
+                    }
+                });
+            })
+        </script>
+    </body>
+</html>
