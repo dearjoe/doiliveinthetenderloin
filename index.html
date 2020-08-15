@@ -13,51 +13,55 @@
         </script>
 
         <title>Do I Live in the Tenderloin?</title>
-        <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> -->
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100&display=swap" rel="stylesheet">
         <style>
             * {
-                box-sizing: border-box;
+                box-sizing: border-box;                
             }
 
             body {
-                margin: 0;
-                
-                min-height: 100vh;
-                font-family: 'Mulish', sans-serif;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 13px;
+                margin: auto;
             }
 
             main {
-                padding: 8px;
+                padding: 40px;
+                padding-top: 200px;
                 max-width: 640px;
-                margin: 120px auto auto;
+                margin: auto;
+                text-align: left;
             }
 
             form {
                 background-color: white;
+                border-color: black;
                 border-radius: 4px;
                 transition: box-shadow .25s;
-                display: flex;
-                flex-direction: row;
-                padding: 12px 16px;
-            }
-
-            form:focus-within {
-                box-shadow: 0 4px 8px rgba(0,0,0,0.48);
+                display: table-cell;
+                /*flex-direction: row;*/
+                padding: 0px 0px;
+                width: 500px;
             }
 
             input {
-                width: 100%;
+                width: 68%;
                 border: none;
-                outline: none;
+                outline-color: gray;
+                outline-style: solid;
+                outline-width: thin;
                 font: inherit;
-                font-size: 16px;
+                font-size: 15px;
+                padding: 10px;
             }
 
             button {
                 border: none;
                 background: none;
                 outline: none;
+                font-size: 28px;
+                padding-left: 28px;
+                /*font: inherit;*/
             }
 
             button:hover {
@@ -65,19 +69,30 @@
             }
 
             #result {
-                text-align: center;
-                font-size: 24px;
+                /*text-align: center;*/
+                font-size: 22px;
             }
+            
+            footer {
+                padding: 40px;
+                padding-top: 200px;
+                max-width: 640px;
+                margin: auto;
+                text-align: center;
+                font-size: 10px;
+            }
+
         </style>
     </head>
     <body>
         <main>
             <h1>Do I Live in the Tenderloin? </h1>
-            <h5>[Mapping is still being updated] </h5>
-            <form id="form">
-                <input id="address" type="text" placeholder="My address..."/>
-                <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"/></svg></button>
-            </form>
+            <!-- <div align="center"> -->
+                <form id="form">
+                    <input id="address" type="text" placeholder="my address..."/>
+                    <button type="submit" title="click here">  &#128169;  </button>
+                </form>
+            <!-- <div> -->
             <p id="result"></p>
         </main>
         <script>
@@ -91,12 +106,16 @@
                     if (result === null) {
                         div.innerHTML = "Whoops! Couldn't find that address";
                     } else if (result === true) {
-                        div.innerHTML = "Yes.";
+                        div.innerHTML = "Yes";
                     } else {
-                        div.innerHTML = "No.";
+                        div.innerHTML = "No";
                     }
                 });
             })
         </script>
+        <footer>
+            <p><a href="mailto:doiliveinthetenderloin@gmail.com">email</a></p>
+        </footer>
+
     </body>
 </html>
